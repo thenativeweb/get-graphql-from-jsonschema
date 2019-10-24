@@ -1,0 +1,37 @@
+{
+  "name": "get-graphql-from-jsonschema",
+  "version": "0.0.0",
+  "description": "get-graphql-from-jsonschema gets a GraphQL schema from a JSON schema.",
+  "contributors": [
+    {
+      "name": "Golo Roden",
+      "email": "golo.roden@thenativeweb.io"
+    },
+    {
+      "name": "Hannes Leutloff",
+      "email": "hannes.leutloff@thenativeweb.io"
+    }
+  ],
+  "main": "build/lib/getGraphqlFromJsonSchema.js",
+  "types": "build/lib/getGraphqlFromJsonSchema.d.ts",
+  "dependencies": {
+    "defekt": "4.0.0"
+  },
+  "devDependencies": {
+    "@types/common-tags": "1.8.0",
+    "@types/json-schema": "7.0.3",
+    "assertthat": "4.0.2",
+    "common-tags": "1.8.0",
+    "roboter": "9.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thenativeweb/get-graphql-from-jsonschema.git"
+  },
+  "keywords": [
+    "gql",
+    "graphql",
+    "jsonschema"
+  ],
+  "license": "MIT"
+}
