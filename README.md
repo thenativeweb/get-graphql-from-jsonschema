@@ -32,11 +32,11 @@ If you use TypeScript, use the following code instead:
 import getGraphqlFromJsonSchema from 'get-graphql-from-jsonschema';
 ```
 
-To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` function and hand over the name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:
+To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` function and hand over the root name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:
 
 ```javascript
 const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-  name: 'person',
+  rootName: 'person',
   schema: {
     type: 'object',
     properties: {
@@ -95,7 +95,7 @@ If you want to use the generated types as input types for a mutation, additional
 
 ```javascript
 const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-  name: 'person',
+  rootName: 'person',
   schema: {
     // ...
   },

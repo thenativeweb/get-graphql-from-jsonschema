@@ -2,12 +2,12 @@ import { Direction } from './Direction';
 import { JSONSchema4 } from 'json-schema';
 import parseSchema from './parseSchema';
 
-const getGraphqlFromJsonSchema = function ({ name, schema, direction = 'output' }: {
-  name: string;
+const getGraphqlFromJsonSchema = function ({ rootName, schema, direction = 'output' }: {
+  rootName: string;
   schema: JSONSchema4;
   direction?: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  return parseSchema({ name, schema, direction });
+  return parseSchema({ path: [ rootName ], schema, direction });
 };
 
 export default getGraphqlFromJsonSchema;

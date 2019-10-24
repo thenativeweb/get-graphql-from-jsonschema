@@ -2,18 +2,22 @@ import { Direction } from './Direction';
 import errors from './errors';
 import { JSONSchema4 } from 'json-schema';
 import parseSchema from './parseSchema';
+import toBreadcrumb from './toBreadcrumb';
 import toPascalCase from './toPascalCase';
 
-const handleObjectType = function ({ name, schema, direction }: {
-  name: string;
+const handleObjectType = function ({ path, schema, direction }: {
+  path: string[];
   schema: JSONSchema4;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   if (!schema.properties) {
-    throw new errors.SchemaInvalid(`Property 'properties' is missing.`);
+    throw new errors.SchemaInvalid(`Property 'properties' at '${toBreadcrumb(path)}' is missing.`);
+  }
+  if (schema.additionalProperties) {
+    throw new errors.SchemaInvalid(`Property 'additionalProperties' at '${toBreadcrumb(path)}' must not be true.`);
   }
 
-  const graphqlTypeName = toPascalCase([ name ]);
+  const graphqlTypeName = toPascalCase(path);
   const graphqlTypeDefinitions: string[] = [];
 
   let currentGraphqlTypeDefinition = '';
@@ -35,7 +39,7 @@ const handleObjectType = function ({ name, schema, direction }: {
       typeName: propertyGraphqlTypeName,
       typeDefinitions: propertyGraphqlTypeDefinitions
     } = parseSchema({
-      name: toPascalCase([ name, propertyName ]),
+      path: [ ...path, propertyName ],
       schema: propertySchema,
       direction
     });

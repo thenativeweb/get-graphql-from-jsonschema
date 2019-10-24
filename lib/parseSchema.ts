@@ -7,14 +7,15 @@ import isArrayType from './isArrayType';
 import isObjectType from './isObjectType';
 import isScalarType from './isScalarType';
 import { JSONSchema4 } from 'json-schema';
+import toBreadcrumb from './toBreadcrumb';
 
-const parseSchema = function ({ name, schema, direction }: {
-  name: string;
+const parseSchema = function ({ path, schema, direction }: {
+  path: string[];
   schema: JSONSchema4;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   if (!schema.type) {
-    throw new errors.SchemaInvalid(`Property 'type' is missing.`);
+    throw new errors.SchemaInvalid(`Property 'type' at '${toBreadcrumb(path)}' is missing.`);
   }
 
   const jsonTypes: string[] = [ schema.type ].flat();
@@ -28,11 +29,11 @@ const parseSchema = function ({ name, schema, direction }: {
     if (isScalarType({ type: jsonType })) {
       result = handleScalarType({ type: jsonType });
     } else if (isArrayType({ type: jsonType })) {
-      result = handleArrayType({ name, schema, direction });
+      result = handleArrayType({ path, schema, direction });
     } else if (isObjectType({ type: jsonType })) {
-      result = handleObjectType({ name, schema, direction });
+      result = handleObjectType({ path, schema, direction });
     } else {
-      throw new errors.TypeInvalid(`Type '${jsonType}' is invalid.`);
+      throw new errors.TypeInvalid(`Type '${jsonType}' at '${path}' is invalid.`);
     }
 
     graphqlTypeNames.push(result.typeName);
