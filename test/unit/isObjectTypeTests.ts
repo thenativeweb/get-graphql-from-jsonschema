@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import isObjectType from '../../lib/isObjectType';
+import { assert } from 'assertthat';
+import { isObjectType } from '../../lib/isObjectType';
 
 suite('isObjectType', (): void => {
   test(`returns true if object is given.`, async (): Promise<void> => {

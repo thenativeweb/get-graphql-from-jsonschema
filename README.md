@@ -23,13 +23,13 @@ $ npm install get-graphql-from-jsonschema
 First you need to add a reference to get-graphql-from-jsonschema to your application:
 
 ```javascript
-const getGraphqlFromJsonSchema = require('get-graphql-from-jsonschema').default;
+const { getGraphqlFromJsonSchema } = require('get-graphql-from-jsonschema');
 ```
 
 If you use TypeScript, use the following code instead:
 
 ```typescript
-import getGraphqlFromJsonSchema from 'get-graphql-from-jsonschema';
+import { getGraphqlFromJsonSchema } from 'get-graphql-from-jsonschema';
 ```
 
 To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` function and hand over the root name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:

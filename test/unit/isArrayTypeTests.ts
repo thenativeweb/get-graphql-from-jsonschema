@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import isArrayType from '../../lib/isArrayType';
+import { assert } from 'assertthat';
+import { isArrayType } from '../../lib/isArrayType';
 
 suite('isArrayType', (): void => {
   test(`returns true if array is given.`, async (): Promise<void> => {

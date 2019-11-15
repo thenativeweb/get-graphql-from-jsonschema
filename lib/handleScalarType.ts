@@ -1,4 +1,4 @@
-import scalarTypes from './scalarTypes';
+import { scalarTypes } from './scalarTypes';
 
 const handleScalarType = function ({ type }: {
   type: string;
@@ -12,4 +12,4 @@ const handleScalarType = function ({ type }: {
   };
 };
 
-export default handleScalarType;
+export { handleScalarType };

@@ -1,4 +1,4 @@
-import scalarTypes from './scalarTypes';
+import { scalarTypes } from './scalarTypes';
 
 const isScalarType = function ({ type }: {
   type: string;
@@ -6,4 +6,4 @@ const isScalarType = function ({ type }: {
   return Boolean(scalarTypes[type]);
 };
 
-export default isScalarType;
+export { isScalarType };

@@ -1,8 +1,8 @@
-import defekt from 'defekt';
+import { defekt } from 'defekt';
 
 const errors = defekt({
   SchemaInvalid: {},
   TypeInvalid: {}
 });
 
-export default errors;
+export { errors };

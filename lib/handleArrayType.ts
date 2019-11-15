@@ -1,8 +1,8 @@
 import { Direction } from './Direction';
-import errors from './errors';
+import { errors } from './errors';
 import { JSONSchema4 } from 'json-schema';
-import parseSchema from './parseSchema';
-import toBreadcrumb from './toBreadcrumb';
+import { parseSchema } from './parseSchema';
+import { toBreadcrumb } from './toBreadcrumb';
 
 const handleArrayType = function ({ path, schema, direction }: {
   path: string[];
@@ -27,4 +27,4 @@ const handleArrayType = function ({ path, schema, direction }: {
   };
 };
 
-export default handleArrayType;
+export { handleArrayType };

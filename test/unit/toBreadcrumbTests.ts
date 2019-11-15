@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import toBreadcrumb from '../../lib/toBreadcrumb';
+import { assert } from 'assertthat';
+import { toBreadcrumb } from '../../lib/toBreadcrumb';
 
 suite('toBreadcrumb', (): void => {
   test('returns the path if only a single level is given.', async (): Promise<void> => {

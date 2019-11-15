@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import getGraphqlFromJsonSchema from '../../lib/getGraphqlFromJsonSchema';
+import { assert } from 'assertthat';
+import { getGraphqlFromJsonSchema } from '../../lib/getGraphqlFromJsonSchema';
 import { stripIndent } from 'common-tags';
 
 suite('getGraphqlFromJsonSchema', (): void => {

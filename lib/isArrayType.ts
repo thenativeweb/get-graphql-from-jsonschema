@@ -4,4 +4,4 @@ const isArrayType = function ({ type }: {
   return type === 'array';
 };
 
-export default isArrayType;
+export { isArrayType };

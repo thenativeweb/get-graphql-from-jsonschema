@@ -4,4 +4,4 @@ const isObjectType = function ({ type }: {
   return type === 'object';
 };
 
-export default isObjectType;
+export { isObjectType };

@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import toPascalCase from '../../lib/toPascalCase';
+import { assert } from 'assertthat';
+import { toPascalCase } from '../../lib/toPascalCase';
 
 suite('toPascalCase', (): void => {
   test('returns a capitalized word.', async (): Promise<void> => {

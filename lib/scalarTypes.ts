@@ -5,4 +5,4 @@ const scalarTypes: Record<string, string> = {
   string: 'String'
 };
 
-export default scalarTypes;
+export { scalarTypes };

@@ -4,4 +4,4 @@ const toPascalCase = function (words: string[]): string {
     join('');
 };
 
-export default toPascalCase;
+export { toPascalCase };

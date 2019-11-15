@@ -1,13 +1,13 @@
 import { Direction } from './Direction';
-import errors from './errors';
-import handleArrayType from './handleArrayType';
-import handleObjectType from './handleObjectType';
-import handleScalarType from './handleScalarType';
-import isArrayType from './isArrayType';
-import isObjectType from './isObjectType';
-import isScalarType from './isScalarType';
+import { errors } from './errors';
+import { handleArrayType } from './handleArrayType';
+import { handleObjectType } from './handleObjectType';
+import { handleScalarType } from './handleScalarType';
+import { isArrayType } from './isArrayType';
+import { isObjectType } from './isObjectType';
+import { isScalarType } from './isScalarType';
 import { JSONSchema4 } from 'json-schema';
-import toBreadcrumb from './toBreadcrumb';
+import { toBreadcrumb } from './toBreadcrumb';
 
 const parseSchema = function ({ path, schema, direction }: {
   path: string[];
@@ -48,4 +48,4 @@ const parseSchema = function ({ path, schema, direction }: {
   };
 };
 
-export default parseSchema;
+export { parseSchema };

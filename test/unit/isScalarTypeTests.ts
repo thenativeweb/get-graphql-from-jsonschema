@@ -1,5 +1,5 @@
-import assert from 'assertthat';
-import isScalarType from '../../lib/isScalarType';
+import { assert } from 'assertthat';
+import { isScalarType } from '../../lib/isScalarType';
 
 suite('isScalarType', (): void => {
   [ 'boolean', 'integer', 'number', 'string' ].forEach((type): void => {
