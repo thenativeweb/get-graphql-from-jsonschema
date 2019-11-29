@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/common-tags": "1.8.0",
     "@types/json-schema": "7.0.3",
-    "assertthat": "5.0.2",
+    "assertthat": "5.1.0",
     "common-tags": "1.8.0",
     "roboter": "9.2.6"
   },
