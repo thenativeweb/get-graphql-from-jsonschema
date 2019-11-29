@@ -22,7 +22,7 @@
     "@types/json-schema": "7.0.3",
     "assertthat": "5.0.2",
     "common-tags": "1.8.0",
-    "roboter": "9.2.5"
+    "roboter": "9.2.6"
   },
   "repository": {
     "type": "git",
