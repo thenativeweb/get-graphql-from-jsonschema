@@ -4,13 +4,13 @@ get-graphql-from-jsonschema gets a GraphQL schema from a JSON schema.
 
 ## Status
 
-| Category         | Status                                                                                                                                                                             |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Version          | [![npm](https://img.shields.io/npm/v/get-graphql-from-jsonschema)](https://www.npmjs.com/package/get-graphql-from-jsonschema)                                                      |
-| Dependencies     | ![David](https://img.shields.io/david/thenativeweb/get-graphql-from-jsonschema)                                                                                                    |
-| Dev dependencies | ![David](https://img.shields.io/david/dev/thenativeweb/get-graphql-from-jsonschema)                                                                                                |
-| Build            | [![CircleCI](https://img.shields.io/circleci/build/github/thenativeweb/get-graphql-from-jsonschema)](https://circleci.com/gh/thenativeweb/get-graphql-from-jsonschema/tree/master) |
-| License          | ![GitHub](https://img.shields.io/github/license/thenativeweb/get-graphql-from-jsonschema)                                                                                          |
+| Category         | Status                                                                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Version          | [![npm](https://img.shields.io/npm/v/get-graphql-from-jsonschema)](https://www.npmjs.com/package/get-graphql-from-jsonschema) |
+| Dependencies     | ![David](https://img.shields.io/david/thenativeweb/get-graphql-from-jsonschema)                                               |
+| Dev dependencies | ![David](https://img.shields.io/david/dev/thenativeweb/get-graphql-from-jsonschema)                                           |
+| Build            | ![GitHub Actions](https://github.com/thenativeweb/get-graphql-from-jsonschema/workflows/Release/badge.svg?branch=master)      |
+| License          | ![GitHub](https://img.shields.io/github/license/thenativeweb/get-graphql-from-jsonschema)                                     |
 
 ## Installation
 
