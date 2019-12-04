@@ -33,7 +33,7 @@ const handleObjectType = function ({ path, schema, direction }: {
   for (const [ propertyName, propertySchema ] of Object.entries(schema.properties)) {
     const isRequired = (
       schema.required && schema.required.includes(propertyName)
-    ) || false;
+    ) ?? false;
 
     const {
       typeName: propertyGraphqlTypeName,
