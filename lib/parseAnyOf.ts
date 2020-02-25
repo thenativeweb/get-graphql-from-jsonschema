@@ -20,7 +20,7 @@ const parseAnyOf = function ({ path, schema, direction }: {
         graphqlTypeNames: string[] = [];
 
   schema.anyOf.forEach((subSchema, index): void => {
-    const result = parseSchema({ schema: subSchema, direction, path: [ ...path, String(index) ]});
+    const result = parseSchema({ schema: subSchema, direction, path: [ ...path, `I${index}` ]});
 
     graphqlTypeNames.push(result.typeName);
     graphqlTypeDefinitions.push(...result.typeDefinitions);

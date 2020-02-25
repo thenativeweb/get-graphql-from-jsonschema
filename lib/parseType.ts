@@ -23,24 +23,26 @@ const parseType = function ({ path, schema, direction }: {
   const graphqlTypeNames: string[] = [];
   const graphqlTypeDefinitions: string[] = [];
 
-  for (const jsonType of jsonTypes) {
+  jsonTypes.forEach((jsonType, index): void => {
     let result;
+
+    const subPath = [ ...path, `T${index}` ];
 
     if (isScalarType({ type: jsonType })) {
       result = handleScalarType({ type: jsonType });
     } else if (isArrayType({ type: jsonType })) {
-      result = handleArrayType({ path, schema, direction });
+      result = handleArrayType({ path: subPath, schema, direction });
     } else if (isObjectType({ type: jsonType })) {
-      result = handleObjectType({ path, schema, direction });
+      result = handleObjectType({ path: subPath, schema, direction });
     } else if (jsonType === 'null') {
-      continue;
+      return;
     } else {
       throw new errors.TypeInvalid(`Type '${jsonType}' at '${path}' is invalid.`);
     }
 
     graphqlTypeNames.push(result.typeName);
     graphqlTypeDefinitions.push(...result.typeDefinitions);
-  }
+  });
 
   const graphqlTypeName = graphqlTypeNames.
     filter((name): boolean => name.trim() !== '').

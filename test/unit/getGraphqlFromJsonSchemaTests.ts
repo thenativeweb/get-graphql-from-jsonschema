@@ -28,8 +28,12 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Float | Int');
-      assert.that(typeDefinitions).is.equalTo([]);
+      assert.that(typeName).is.equalTo('Temperature');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          union Temperature = Float | Int
+        `
+      ]);
     });
   });
 
@@ -64,8 +68,12 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('[Float | Int]');
-      assert.that(typeDefinitions).is.equalTo([]);
+      assert.that(typeName).is.equalTo('[TemperaturesT0]');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          union TemperaturesT0 = Float | Int
+        `
+      ]);
     });
 
     test('returns the GraphQL type name for an outer union type.', async (): Promise<void> => {
@@ -83,8 +91,15 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Float | Int | [Float | Int]');
-      assert.that(typeDefinitions).is.equalTo([]);
+      assert.that(typeName).is.equalTo('Temperatures');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          union TemperaturesT2 = Float | Int
+        `,
+        stripIndent`
+          union Temperatures = Float | Int | [TemperaturesT2]
+        `
+      ]);
     });
   });
 
@@ -103,10 +118,10 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Person');
+      assert.that(typeName).is.equalTo('PersonT0');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          type Person {
+          type PersonT0 {
             firstName: String!
             lastName: String
           }`
@@ -148,24 +163,24 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Person');
+      assert.that(typeName).is.equalTo('PersonT0');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          type PersonCoordinates {
+          type PersonT0CoordinatesT0 {
             latitude: Float!
             longitude: Float!
           }`,
         stripIndent`
-          type PersonTags {
+          type PersonT0TagsT0T0 {
             key: String!
             value: String!
           }`,
         stripIndent`
-          type Person {
+          type PersonT0 {
             firstName: String!
             lastName: String
-            coordinates: PersonCoordinates
-            tags: [PersonTags]!
+            coordinates: PersonT0CoordinatesT0
+            tags: [PersonT0TagsT0T0]!
           }`
       ]);
     });
@@ -206,29 +221,29 @@ suite('getGraphqlFromJsonSchema', (): void => {
         direction: 'input'
       });
 
-      assert.that(typeName).is.equalTo('Person');
+      assert.that(typeName).is.equalTo('PersonT0');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          input PersonCoordinates {
+          input PersonT0CoordinatesT0 {
             latitude: Float!
             longitude: Float!
           }`,
         stripIndent`
-          input PersonTags {
+          input PersonT0TagsT0T0 {
             key: String!
             value: String!
           }`,
         stripIndent`
-          input Person {
+          input PersonT0 {
             firstName: String!
             lastName: String
-            coordinates: PersonCoordinates
-            tags: [PersonTags]!
+            coordinates: PersonT0CoordinatesT0
+            tags: [PersonT0TagsT0T0]!
           }`
       ]);
     });
 
-    test('renders empty types correctly.', async (): Promise<void> => {
+    test('returns the GraphQL type name and type definitions for empty types.', async (): Promise<void> => {
       const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
         rootName: 'foo',
         schema: {
@@ -238,10 +253,26 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Foo');
+      assert.that(typeName).is.equalTo('FooT0');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          type Foo
+          type FooT0
+        `
+      ]);
+    });
+
+    test('returns the GraphQL type name and type definitions for multiple types.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+        rootName: 'person',
+        schema: {
+          type: [ 'string', 'integer' ]
+        }
+      });
+
+      assert.that(typeName).is.equalTo('Person');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          union Person = String | Int
         `
       ]);
     });
@@ -269,13 +300,16 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Float | Foobar1');
+      assert.that(typeName).is.equalTo('Foobar');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          type Foobar1 {
+          type FoobarI1T0 {
             foo: String!
             bar: Float
           }
+        `,
+        stripIndent`
+          union Foobar = Float | FoobarI1T0
         `
       ]);
     });
@@ -296,10 +330,10 @@ suite('getGraphqlFromJsonSchema', (): void => {
         }
       });
 
-      assert.that(typeName).is.equalTo('Foobar');
+      assert.that(typeName).is.equalTo('FoobarT0');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          type Foobar {
+          type FoobarT0 {
             foo: Float
           }
         `
@@ -324,7 +358,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
           type: 'array'
         }
       });
-    }).is.throwing(`Property 'items' at 'temperatures' is missing.`);
+    }).is.throwing(`Property 'items' at 'temperatures.T0' is missing.`);
   });
 
   test('throws an error if items is an array.', async (): Promise<void> => {
@@ -338,7 +372,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
           ]
         }
       });
-    }).is.throwing(`Property 'items' at 'temperatures' must not be an array.`);
+    }).is.throwing(`Property 'items' at 'temperatures.T0' must not be an array.`);
   });
 
   test('throws an error if properties are missing on an object.', async (): Promise<void> => {
@@ -349,7 +383,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
           type: 'object'
         }
       });
-    }).is.throwing(`Property 'properties' at 'person' is missing.`);
+    }).is.throwing(`Property 'properties' at 'person.T0' is missing.`);
   });
 
   test('throws an error if additionalProperties is set to true.', async (): Promise<void> => {
@@ -366,6 +400,6 @@ suite('getGraphqlFromJsonSchema', (): void => {
           additionalProperties: true
         }
       });
-    }).is.throwing(`Property 'additionalProperties' at 'person' must not be true.`);
+    }).is.throwing(`Property 'additionalProperties' at 'person.T0' must not be true.`);
   });
 });

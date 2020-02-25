@@ -3,20 +3,35 @@ import { errors } from './errors';
 import { JSONSchema4 } from 'json-schema';
 import { parseAnyOf } from './parseAnyOf';
 import { parseType } from './parseType';
+import { stripIndent } from 'common-tags';
 import { toBreadcrumb } from './toBreadcrumb';
+import { toPascalCase } from './toPascalCase';
 
 const parseSchema = function ({ path, schema, direction }: {
   path: string[];
   schema: JSONSchema4;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
+  let result: { typeName: string; typeDefinitions: string[] };
+
   if (schema.type) {
-    return parseType({ path, schema, direction });
+    result = parseType({ path, schema, direction });
+  } else if (schema.anyOf) {
+    result = parseAnyOf({ path, schema, direction });
+  } else {
+    throw new errors.SchemaInvalid(`Structure at '${toBreadcrumb(path)}' not recognized.`);
   }
-  if (schema.anyOf) {
-    return parseAnyOf({ path, schema, direction });
+
+  if (result.typeName.includes('|')) {
+    const typeName = toPascalCase(path);
+
+    result.typeDefinitions.push(stripIndent`
+      union ${typeName} = ${result.typeName}
+    `);
+    result.typeName = typeName;
   }
-  throw new errors.SchemaInvalid(`Structure at '${toBreadcrumb(path)}' not recognized.`);
+
+  return result;
 };
 
 export { parseSchema };
