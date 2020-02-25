@@ -229,24 +229,73 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
   });
 
-  test('throws an error if the type in a schema is missing.', async (): Promise<void> => {
+  suite('schemas with anyOf', (): void => {
+    test('returns a union type for anyOf types.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+        rootName: 'foobar',
+        schema: {
+          anyOf: [
+            {
+              type: 'number'
+            },
+            {
+              type: 'object',
+              properties: {
+                foo: { type: 'string' },
+                bar: { type: 'number' }
+              },
+              required: [ 'foo' ],
+              additionalProperties: false
+            }
+          ]
+        }
+      });
+
+      assert.that(typeName).is.equalTo('Float | Foobar1');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          type Foobar1 {
+            foo: String!
+            bar: Float
+          }
+        `
+      ]);
+    });
+
+    test('ignores type null.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+        rootName: 'foobar',
+        schema: {
+          type: 'object',
+          properties: {
+            foo: {
+              anyOf: [
+                { type: 'number', minimum: 1 },
+                { type: 'null' }
+              ]
+            }
+          }
+        }
+      });
+
+      assert.that(typeName).is.equalTo('Foobar');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          type Foobar {
+            foo: Float
+          }
+        `
+      ]);
+    });
+  });
+
+  test('throws an error if a schema structure is not recognized.', async (): Promise<void> => {
     assert.that((): void => {
       getGraphqlFromJsonSchema({
         rootName: 'temperature',
         schema: {}
       });
-    }).is.throwing(`Property 'type' at 'temperature' is missing.`);
-  });
-
-  test('throws an error if an invalid type is used.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'temperature',
-        schema: {
-          type: 'null'
-        }
-      });
-    }).is.throwing(`Type 'null' at 'temperature' is invalid.`);
+    }).is.throwing(`Structure at 'temperature' not recognized.`);
   });
 
   test('throws an error if items is missing on an array.', async (): Promise<void> => {

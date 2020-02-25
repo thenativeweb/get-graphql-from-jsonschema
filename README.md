@@ -103,6 +103,11 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 });
 ```
 
+## Caveats
+
+- Ignores the JSONSchema type `null`, since it is not directly translatable to GraphQL.
+- Ignores `allOf` and `oneOf`, since their logic is not translatable. However, `anyOf` is supported.
+
 ## Running the build
 
 To build this module use [roboter](https://www.npmjs.com/package/roboter).
