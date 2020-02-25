@@ -227,6 +227,24 @@ suite('getGraphqlFromJsonSchema', (): void => {
           }`
       ]);
     });
+
+    test('renders empty types correctly.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+        rootName: 'foo',
+        schema: {
+          type: 'object',
+          properties: {},
+          additionalProperties: false
+        }
+      });
+
+      assert.that(typeName).is.equalTo('Foo');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          type Foo
+        `
+      ]);
+    });
   });
 
   suite('schemas with anyOf', (): void => {

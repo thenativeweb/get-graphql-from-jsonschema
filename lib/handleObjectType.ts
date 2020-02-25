@@ -20,15 +20,7 @@ const handleObjectType = function ({ path, schema, direction }: {
   const graphqlTypeName = toPascalCase(path);
   const graphqlTypeDefinitions: string[] = [];
 
-  let currentGraphqlTypeDefinition = '';
-
-  if (direction === 'input') {
-    currentGraphqlTypeDefinition += 'input';
-  } else {
-    currentGraphqlTypeDefinition += 'type';
-  }
-
-  currentGraphqlTypeDefinition += ` ${graphqlTypeName} {\n`;
+  const lines = [];
 
   for (const [ propertyName, propertySchema ] of Object.entries(schema.properties)) {
     const isRequired = (
@@ -44,18 +36,37 @@ const handleObjectType = function ({ path, schema, direction }: {
       direction
     });
 
-    currentGraphqlTypeDefinition += `  ${propertyName}: ${propertyGraphqlTypeName}`;
+    let line = `  ${propertyName}: ${propertyGraphqlTypeName}`;
 
     if (isRequired) {
-      currentGraphqlTypeDefinition += '!\n';
+      line += '!\n';
     } else {
-      currentGraphqlTypeDefinition += '\n';
+      line += '\n';
     }
 
+    lines.push(line);
     graphqlTypeDefinitions.push(...propertyGraphqlTypeDefinitions);
   }
 
-  currentGraphqlTypeDefinition += '}';
+  let currentGraphqlTypeDefinition = '';
+
+  if (direction === 'input') {
+    currentGraphqlTypeDefinition += 'input';
+  } else {
+    currentGraphqlTypeDefinition += 'type';
+  }
+
+  if (lines.length > 0) {
+    currentGraphqlTypeDefinition += ` ${graphqlTypeName} {\n`;
+
+    for (const line of lines) {
+      currentGraphqlTypeDefinition += line;
+    }
+
+    currentGraphqlTypeDefinition += '}';
+  } else {
+    currentGraphqlTypeDefinition += ` ${graphqlTypeName}`;
+  }
 
   graphqlTypeDefinitions.push(currentGraphqlTypeDefinition);
 
