@@ -103,10 +103,12 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 });
 ```
 
-## Caveats
+### Knowing the limitations
 
-- Ignores the JSONSchema type `null`, since it is not directly translatable to GraphQL.
-- Ignores `allOf` and `oneOf`, since their logic is not translatable. However, `anyOf` is supported.
+Unfortunately, it is not possible to map every aspect of a JSON schema to a GraphQL schema. When using `getGraphqlFromJsonSchema`, the following limitations apply:
+
+- The `null` type gets ignored, since it can not be mapped to GraphQL directly.
+- The keywords `allOf` and `oneOf` get ignored, since their logic can not be mapped to GraphQL. However, the `anyOf` keyword is supported.
 
 ## Running the build
 
