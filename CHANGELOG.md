@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/4.1.0...5.0.0) (2020-02-26)
+
+
+### Features
+
+* Force major update. ([#94](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/94)) ([60f8669](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/60f8669dc68ae1467ee66cfd26962c8a237af253))
+
+
+### BREAKING CHANGES
+
+* Force major update, because both previous commits lost this.
+
 # [4.1.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/4.0.0...4.1.0) (2020-02-26)
 
 
