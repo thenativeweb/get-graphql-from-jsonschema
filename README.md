@@ -70,26 +70,28 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 });
 
 console.log(typeName);
-// => Person
+// => PersonT0
 
 console.log(typeDefinitions);
 // => [
-//      'type PersonCoordinates {
+//      'type PersonT0CoordinatesT0 {
 //        latitude: Float!
 //        longitude: Float!
 //      }',
-//      'type PersonTags {
+//      'type PersonT0TagsT0T0 {
 //        key: String!
 //        value: String!
 //      }',
-//      'type Person {
+//      'type PersonT0 {
 //        firstName: String!
 //        lastName: String
-//        coordinates: PersonCoordinates
-//        tags: [PersonTags]!
+//        coordinates: PersonT0CoordinatesT0
+//        tags: [PersonT0TagsT0T0]!
 //      }'
 //    ]
 ```
+
+The `T0` suffixes are due to enumerating the types in each schema. If a schema has multiple types, they are noted with increasing indexes, to differentiate them in resulting union types. This also happens with `anyOf` constructs.
 
 If you want to use the generated types as input types for a mutation, additionally provide the `direction` option to the call to `getGraphqlFromJsonSchema` and set its value to `input`:
 
@@ -102,6 +104,13 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
   direction: 'input'
 });
 ```
+
+### Knowing the limitations
+
+Unfortunately, it is not possible to map every aspect of a JSON schema to a GraphQL schema. When using `getGraphqlFromJsonSchema`, the following limitations apply:
+
+- The `null` type gets ignored, since it can not be mapped to GraphQL directly.
+- The keywords `allOf` and `oneOf` get ignored, since their logic can not be mapped to GraphQL. However, the `anyOf` keyword is supported.
 
 ## Running the build
 
