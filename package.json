@@ -15,13 +15,13 @@
   "main": "build/lib/getGraphqlFromJsonSchema.js",
   "types": "build/lib/getGraphqlFromJsonSchema.d.ts",
   "dependencies": {
+    "@types/common-tags": "1.8.0",
+    "@types/json-schema": "7.0.4",
+    "common-tags": "1.8.0",
     "defekt": "5.0.1"
   },
   "devDependencies": {
-    "@types/common-tags": "1.8.0",
-    "@types/json-schema": "7.0.4",
     "assertthat": "5.1.1",
-    "common-tags": "1.8.0",
     "roboter": "11.1.23",
     "semantic-release-configuration": "1.0.19"
   },
