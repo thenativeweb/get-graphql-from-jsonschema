@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/5.0.0...5.0.1) (2020-05-05)
+
+
+### Bug Fixes
+
+* runtime deps are in dev-dependencies ([#120](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/120)) ([594d1ac](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/594d1acbead52d32a51a3f95736a4cbc9d1d38b9))
+
 # [5.0.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/4.1.0...5.0.0) (2020-02-26)
 
 
