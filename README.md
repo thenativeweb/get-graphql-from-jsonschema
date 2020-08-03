@@ -105,12 +105,50 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 });
 ```
 
+### Using `oneOf` to generate union types
+
+The `oneOf` keyword is supported with a limitation on its use: There must be no other properties on the same level as the `oneOf`.
+
+```javascript
+const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+  rootName: 'foobar',
+  schema: {
+    oneOf: [
+      {
+        type: 'number'
+      },
+      {
+        type: 'object',
+        properties: {
+          foo: { type: 'string' },
+          bar: { type: 'number' }
+        },
+        required: [ 'foo' ],
+        additionalProperties: false
+      }
+    ]
+  }
+});
+
+console.log(typeName);
+// => Foobar
+
+console.log(typeDefinitions);
+// => [
+//     'type FoobarI1T0 {
+//       foo: String!
+//       bar: Float
+//     }',
+//     'union Foobar = Float | FoobarI1T0'
+// ]
+```
+
 ### Knowing the limitations
 
 Unfortunately, it is not possible to map every aspect of a JSON schema to a GraphQL schema. When using `getGraphqlFromJsonSchema`, the following limitations apply:
 
 - The `null` type gets ignored, since it can not be mapped to GraphQL directly.
-- The keywords `allOf` and `oneOf` get ignored, since their logic can not be mapped to GraphQL. However, the `anyOf` keyword is supported.
+- The keywords `allOf` and `anyOf` get ignored, since their logic can not be mapped to GraphQL. However, the `oneOf` keyword is supported.
 
 ## Running the build
 

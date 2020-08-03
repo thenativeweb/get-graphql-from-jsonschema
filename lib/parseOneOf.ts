@@ -4,22 +4,22 @@ import { JSONSchema4 } from 'json-schema';
 import { parseSchema } from './parseSchema';
 import { toBreadcrumb } from './toBreadcrumb';
 
-const parseAnyOf = function ({ path, schema, direction }: {
+const parseOneOf = function ({ path, schema, direction }: {
   path: string[];
   schema: JSONSchema4;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  if (!schema.anyOf) {
-    throw new errors.SchemaInvalid(`Property 'anyOf' at '${toBreadcrumb(path)}' is missing.`);
+  if (!schema.oneOf) {
+    throw new errors.SchemaInvalid(`Property 'oneOf' at '${toBreadcrumb(path)}' is missing.`);
   }
-  if (!Array.isArray(schema.anyOf)) {
-    throw new errors.SchemaInvalid(`Property 'anyOf' at '${toBreadcrumb(path)}' should be an array.`);
+  if (!Array.isArray(schema.oneOf)) {
+    throw new errors.SchemaInvalid(`Property 'oneOf' at '${toBreadcrumb(path)}' should be an array.`);
   }
 
   const graphqlTypeDefinitions: string[] = [],
         graphqlTypeNames: string[] = [];
 
-  schema.anyOf.forEach((subSchema, index): void => {
+  schema.oneOf.forEach((subSchema, index): void => {
     const result = parseSchema({ schema: subSchema, direction, path: [ ...path, `I${index}` ]});
 
     graphqlTypeNames.push(result.typeName);
@@ -36,4 +36,4 @@ const parseAnyOf = function ({ path, schema, direction }: {
   };
 };
 
-export { parseAnyOf };
+export { parseOneOf };

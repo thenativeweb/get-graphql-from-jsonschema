@@ -278,12 +278,12 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
   });
 
-  suite('schemas with anyOf', (): void => {
-    test('returns a union type for anyOf types.', async (): Promise<void> => {
+  suite('schemas with oneOf', (): void => {
+    test('returns a union type for oneOf types.', async (): Promise<void> => {
       const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
         rootName: 'foobar',
         schema: {
-          anyOf: [
+          oneOf: [
             {
               type: 'number'
             },
@@ -321,7 +321,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
           type: 'object',
           properties: {
             foo: {
-              anyOf: [
+              oneOf: [
                 { type: 'number', minimum: 1 },
                 { type: 'null' }
               ]
