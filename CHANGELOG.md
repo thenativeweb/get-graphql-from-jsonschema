@@ -1,3 +1,18 @@
+# [6.0.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/5.0.3...6.0.0) (2020-08-03)
+
+
+### Features
+
+* Flip usage of oneOf/anyOf, since it was wrong. Add documentation. ([#142](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/142)) ([d91bfc1](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/d91bfc11cbd2bebff9d9a1eabb836571a6e5e708))
+
+
+### BREAKING CHANGES
+
+* It is impossible to map json schema's anyOf to GraphQL, since multiple
+of the given schemas may match. GraphQL only provider exclusionary
+union types, which correspond to oneOf in json schema.
+So the terms had to be switched.
+
 ## [5.0.3](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/5.0.2...5.0.3) (2020-07-13)
 
 
