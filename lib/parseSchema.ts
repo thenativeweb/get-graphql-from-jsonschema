@@ -1,7 +1,7 @@
 import { Direction } from './Direction';
 import { errors } from './errors';
 import { JSONSchema4 } from 'json-schema';
-import { parseAnyOf } from './parseAnyOf';
+import { parseOneOf } from './parseOneOf';
 import { parseType } from './parseType';
 import { stripIndent } from 'common-tags';
 import { toBreadcrumb } from './toBreadcrumb';
@@ -16,8 +16,8 @@ const parseSchema = function ({ path, schema, direction }: {
 
   if (schema.type) {
     result = parseType({ path, schema, direction });
-  } else if (schema.anyOf) {
-    result = parseAnyOf({ path, schema, direction });
+  } else if (schema.oneOf) {
+    result = parseOneOf({ path, schema, direction });
   } else {
     throw new errors.SchemaInvalid(`Structure at '${toBreadcrumb(path)}' not recognized.`);
   }
