@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.2...6.0.3) (2020-10-29)
+
+
+### Bug Fixes
+
+* bump defekt from 5.2.0 to 5.2.1 ([#176](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/176)) ([04a4cd3](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/04a4cd30138ac7310965c463e9e3789a92761fb1))
+
 ## [6.0.2](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.1...6.0.2) (2020-10-14)
 
 
