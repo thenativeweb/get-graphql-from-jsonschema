@@ -1,3 +1,10 @@
+## [6.0.4](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.3...6.0.4) (2020-11-03)
+
+
+### Bug Fixes
+
+* Fix headline for robot section in readme. ([#180](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/180)) ([0e1a43f](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/0e1a43f1774468392f31225aa28e4a86ad627071))
+
 ## [6.0.3](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.2...6.0.3) (2020-10-29)
 
 
