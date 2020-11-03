@@ -150,9 +150,9 @@ Unfortunately, it is not possible to map every aspect of a JSON schema to a Grap
 - The `null` type gets ignored, since it can not be mapped to GraphQL directly.
 - The keywords `allOf` and `anyOf` get ignored, since their logic can not be mapped to GraphQL. However, the `oneOf` keyword is supported.
 
-## Running the quality assurance
+## Running quality assurance
 
-To build this module use [roboter](https://www.npmjs.com/package/roboter).
+To run quality assurance for this module use [roboter](https://www.npmjs.com/package/roboter):
 
 ```shell
 $ npx roboter
