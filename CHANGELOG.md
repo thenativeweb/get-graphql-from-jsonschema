@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.5...7.0.0) (2020-11-13)
+
+
+### Features
+
+* Migrate to JSONSchema7. ([#197](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/197)) ([ad0290f](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/ad0290f37c3093c182febb1694b2ae72d260fa2a))
+
+
+### BREAKING CHANGES
+
+* Types are new incompatible with the previously used JSONSchema4 type.
+
 ## [6.0.5](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/6.0.4...6.0.5) (2020-11-03)
 
 
