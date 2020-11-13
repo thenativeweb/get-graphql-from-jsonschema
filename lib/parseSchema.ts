@@ -1,6 +1,6 @@
 import { Direction } from './Direction';
 import { errors } from './errors';
-import { JSONSchema4 } from 'json-schema';
+import { JSONSchema7 } from 'json-schema';
 import { parseOneOf } from './parseOneOf';
 import { parseType } from './parseType';
 import { stripIndent } from 'common-tags';
@@ -9,7 +9,7 @@ import { toPascalCase } from './toPascalCase';
 
 const parseSchema = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema4;
+  schema: JSONSchema7;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   let result: { typeName: string; typeDefinitions: string[] };

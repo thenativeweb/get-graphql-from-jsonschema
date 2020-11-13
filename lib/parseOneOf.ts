@@ -1,12 +1,12 @@
 import { Direction } from './Direction';
 import { errors } from './errors';
-import { JSONSchema4 } from 'json-schema';
+import { JSONSchema7 } from 'json-schema';
 import { parseSchema } from './parseSchema';
 import { toBreadcrumb } from './toBreadcrumb';
 
 const parseOneOf = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema4;
+  schema: JSONSchema7;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   if (!schema.oneOf) {
@@ -20,7 +20,7 @@ const parseOneOf = function ({ path, schema, direction }: {
         graphqlTypeNames: string[] = [];
 
   schema.oneOf.forEach((subSchema, index): void => {
-    const result = parseSchema({ schema: subSchema, direction, path: [ ...path, `I${index}` ]});
+    const result = parseSchema({ schema: subSchema as JSONSchema7, direction, path: [ ...path, `I${index}` ]});
 
     graphqlTypeNames.push(result.typeName);
     graphqlTypeDefinitions.push(...result.typeDefinitions);
