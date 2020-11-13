@@ -1,13 +1,13 @@
 import { Direction } from './Direction';
 import { errors } from './errors';
-import { JSONSchema4 } from 'json-schema';
+import { JSONSchema7 } from 'json-schema';
 import { parseSchema } from './parseSchema';
 import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
 
 const handleObjectType = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema4;
+  schema: JSONSchema7;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   if (!schema.properties) {
@@ -32,7 +32,7 @@ const handleObjectType = function ({ path, schema, direction }: {
       typeDefinitions: propertyGraphqlTypeDefinitions
     } = parseSchema({
       path: [ ...path, propertyName ],
-      schema: propertySchema,
+      schema: propertySchema as JSONSchema7,
       direction
     });
 

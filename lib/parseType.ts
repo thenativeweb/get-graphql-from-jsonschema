@@ -6,12 +6,12 @@ import { handleScalarType } from './handleScalarType';
 import { isArrayType } from './isArrayType';
 import { isObjectType } from './isObjectType';
 import { isScalarType } from './isScalarType';
-import { JSONSchema4 } from 'json-schema';
+import { JSONSchema7 } from 'json-schema';
 import { toBreadcrumb } from './toBreadcrumb';
 
 const parseType = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema4;
+  schema: JSONSchema7;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   if (!schema.type) {
