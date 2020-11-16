@@ -38,11 +38,7 @@ const handleObjectType = function ({ path, schema, direction }: {
 
     let line = `  ${propertyName}: ${propertyGraphqlTypeName}`;
 
-    if (isRequired) {
-      line += '!\n';
-    } else {
-      line += '\n';
-    }
+    line += isRequired ? '!\n' : '\n';
 
     lines.push(line);
     graphqlTypeDefinitions.push(...propertyGraphqlTypeDefinitions);
@@ -50,11 +46,7 @@ const handleObjectType = function ({ path, schema, direction }: {
 
   let currentGraphqlTypeDefinition = '';
 
-  if (direction === 'input') {
-    currentGraphqlTypeDefinition += 'input';
-  } else {
-    currentGraphqlTypeDefinition += 'type';
-  }
+  currentGraphqlTypeDefinition += direction === 'input' ? 'input' : 'type';
 
   if (lines.length > 0) {
     currentGraphqlTypeDefinition += ` ${graphqlTypeName} {\n`;
