@@ -1,9 +1,9 @@
 import { Direction } from './Direction';
-import { errors } from './errors';
 import { JSONSchema7 } from 'json-schema';
 import { parseSchema } from './parseSchema';
 import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
+import * as errors from './errors';
 
 const handleObjectType = function ({ path, schema, direction }: {
   path: string[];

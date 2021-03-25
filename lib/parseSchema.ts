@@ -1,11 +1,11 @@
 import { Direction } from './Direction';
-import { errors } from './errors';
 import { JSONSchema7 } from 'json-schema';
 import { parseOneOf } from './parseOneOf';
 import { parseType } from './parseType';
 import { stripIndent } from 'common-tags';
 import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
+import * as errors from './errors';
 
 const parseSchema = function ({ path, schema, direction }: {
   path: string[];

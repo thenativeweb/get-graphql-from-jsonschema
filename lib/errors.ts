@@ -1,8 +1,9 @@
 import { defekt } from 'defekt';
 
-const errors = defekt({
-  SchemaInvalid: {},
-  TypeInvalid: {}
-});
+class SchemaInvalid extends defekt({ code: 'SchemaInvalid' }) {}
+class TypeInvalid extends defekt({ code: 'TypeInvalid' }) {}
 
-export { errors };
+export {
+  SchemaInvalid,
+  TypeInvalid
+};

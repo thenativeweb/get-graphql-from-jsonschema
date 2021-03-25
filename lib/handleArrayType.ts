@@ -1,8 +1,8 @@
 import { Direction } from './Direction';
-import { errors } from './errors';
 import { JSONSchema7 } from 'json-schema';
 import { parseSchema } from './parseSchema';
 import { toBreadcrumb } from './toBreadcrumb';
+import * as errors from './errors';
 
 const handleArrayType = function ({ path, schema, direction }: {
   path: string[];
