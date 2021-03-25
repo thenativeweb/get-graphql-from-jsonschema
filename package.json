@@ -18,7 +18,7 @@
     "@types/common-tags": "1.8.0",
     "@types/json-schema": "7.0.7",
     "common-tags": "1.8.0",
-    "defekt": "6.0.2"
+    "defekt": "7.0.3"
   },
   "devDependencies": {
     "assertthat": "5.2.6",
