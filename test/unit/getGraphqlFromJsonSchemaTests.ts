@@ -101,6 +101,27 @@ suite('getGraphqlFromJsonSchema', (): void => {
         `
       ]);
     });
+
+    test('returns the GraphQL type name for an array containing objects.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+        rootName: 'temperatures',
+        schema: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              foo: { type: 'string' }
+            },
+            required: [ 'foo' ]
+          }
+        }
+      });
+
+      assert.that(typeName).is.equalTo('[TemperaturesT0T0]');
+      assert.that(typeDefinitions).is.equalTo([
+        'type TemperaturesT0T0 {\n  foo: String!\n}'
+      ]);
+    });
   });
 
   suite('schemas for object types', (): void => {
