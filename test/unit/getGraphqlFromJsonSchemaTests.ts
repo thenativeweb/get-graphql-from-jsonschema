@@ -1,5 +1,5 @@
 import { assert } from 'assertthat';
-import { getGraphqlFromJsonSchema } from '../../lib/getGraphqlFromJsonSchema';
+import { getGraphqlFromJsonSchema } from '../../lib';
 import { stripIndent } from 'common-tags';
 
 suite('getGraphqlFromJsonSchema', (): void => {
@@ -80,24 +80,16 @@ suite('getGraphqlFromJsonSchema', (): void => {
       const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
         rootName: 'temperatures',
         schema: {
-          type: [ 'number', 'integer', 'array' ],
+          type: [ 'number', 'integer' ],
           minimum: -273,
-          maximum: Number.POSITIVE_INFINITY,
-          items: {
-            type: [ 'number', 'integer' ],
-            minimum: -273,
-            maximum: Number.POSITIVE_INFINITY
-          }
+          maximum: Number.POSITIVE_INFINITY
         }
       });
 
       assert.that(typeName).is.equalTo('Temperatures');
       assert.that(typeDefinitions).is.equalTo([
         stripIndent`
-          union TemperaturesT2 = Float | Int
-        `,
-        stripIndent`
-          union Temperatures = Float | Int | [TemperaturesT2]
+          union Temperatures = Float | Int
         `
       ]);
     });
@@ -112,7 +104,8 @@ suite('getGraphqlFromJsonSchema', (): void => {
             properties: {
               foo: { type: 'string' }
             },
-            required: [ 'foo' ]
+            required: [ 'foo' ],
+            additionalProperties: false
           }
         }
       });
@@ -334,93 +327,5 @@ suite('getGraphqlFromJsonSchema', (): void => {
         `
       ]);
     });
-
-    test('ignores type null.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-        rootName: 'foobar',
-        schema: {
-          type: 'object',
-          properties: {
-            foo: {
-              oneOf: [
-                { type: 'number', minimum: 1 },
-                { type: 'null' }
-              ]
-            }
-          }
-        }
-      });
-
-      assert.that(typeName).is.equalTo('FoobarT0');
-      assert.that(typeDefinitions).is.equalTo([
-        stripIndent`
-          type FoobarT0 {
-            foo: Float
-          }
-        `
-      ]);
-    });
-  });
-
-  test('throws an error if a schema structure is not recognized.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'temperature',
-        schema: {}
-      });
-    }).is.throwing(`Structure at 'temperature' not recognized.`);
-  });
-
-  test('throws an error if items is missing on an array.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'temperatures',
-        schema: {
-          type: 'array'
-        }
-      });
-    }).is.throwing(`Property 'items' at 'temperatures.T0' is missing.`);
-  });
-
-  test('throws an error if items is an array.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'temperatures',
-        schema: {
-          type: 'array',
-          items: [
-            { type: 'number' }
-          ]
-        }
-      });
-    }).is.throwing(`Property 'items' at 'temperatures.T0' must not be an array.`);
-  });
-
-  test('throws an error if properties are missing on an object.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'person',
-        schema: {
-          type: 'object'
-        }
-      });
-    }).is.throwing(`Property 'properties' at 'person.T0' is missing.`);
-  });
-
-  test('throws an error if additionalProperties is set to true.', async (): Promise<void> => {
-    assert.that((): void => {
-      getGraphqlFromJsonSchema({
-        rootName: 'person',
-        schema: {
-          type: 'object',
-          properties: {
-            firstName: { type: 'string' },
-            lastName: { type: 'string' }
-          },
-          required: [ 'firstName' ],
-          additionalProperties: true
-        }
-      });
-    }).is.throwing(`Property 'additionalProperties' at 'person.T0' must not be true.`);
   });
 });

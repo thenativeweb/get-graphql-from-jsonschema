@@ -1,44 +1,34 @@
-import { Direction } from './Direction';
+import { Direction } from './Types/Direction';
 import { handleArrayType } from './handleArrayType';
 import { handleObjectType } from './handleObjectType';
 import { handleScalarType } from './handleScalarType';
-import { isArrayType } from './isArrayType';
-import { isObjectType } from './isObjectType';
-import { isScalarType } from './isScalarType';
-import { JSONSchema7 } from 'json-schema';
-import { toBreadcrumb } from './toBreadcrumb';
-import * as errors from './errors';
+import { hasArrayType } from './hasArrayType';
+import { hasObjectType } from './hasObjectType';
+import { TranslatableTypeJsonSchema } from './Types/TranslateableTypeJsonSchema';
 
 const parseType = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema7;
+  schema: TranslatableTypeJsonSchema;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  if (!schema.type) {
-    throw new errors.SchemaInvalid(`Property 'type' at '${toBreadcrumb(path)}' is missing.`);
-  }
-
-  const jsonTypes: string[] = [ schema.type ].flat();
-
   const graphqlTypeNames: string[] = [];
   const graphqlTypeDefinitions: string[] = [];
 
-  jsonTypes.forEach((jsonType, index): void => {
-    let result;
+  const subPath = [ ...path, `T${0}` ];
 
-    const subPath = [ ...path, `T${index}` ];
+  if (hasArrayType(schema)) {
+    return handleArrayType({ path: subPath, schema, direction });
+  }
+  if (hasObjectType(schema)) {
+    return handleObjectType({ path: subPath, schema, direction });
+  }
 
-    if (isScalarType({ type: jsonType })) {
-      result = handleScalarType({ type: jsonType });
-    } else if (isArrayType({ type: jsonType })) {
-      result = handleArrayType({ path: subPath, schema, direction });
-    } else if (isObjectType({ type: jsonType })) {
-      result = handleObjectType({ path: subPath, schema, direction });
-    } else if (jsonType === 'null') {
-      return;
-    } else {
-      throw new errors.TypeInvalid(`Type '${jsonType}' at '${path}' is invalid.`);
-    }
+  if (!Array.isArray(schema.type)) {
+    return handleScalarType({ type: schema.type });
+  }
+
+  schema.type.forEach((type): void => {
+    const result = handleScalarType({ type });
 
     graphqlTypeNames.push(result.typeName);
     graphqlTypeDefinitions.push(...result.typeDefinitions);

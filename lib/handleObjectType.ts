@@ -1,22 +1,13 @@
-import { Direction } from './Direction';
-import { JSONSchema7 } from 'json-schema';
+import { Direction } from './Types/Direction';
 import { parseSchema } from './parseSchema';
-import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
-import * as errors from './errors';
+import { TranslatableObjectTypeJsonSchema } from './Types/TranslatableObjectTypeJsonSchema';
 
 const handleObjectType = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema7;
+  schema: TranslatableObjectTypeJsonSchema;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  if (!schema.properties) {
-    throw new errors.SchemaInvalid(`Property 'properties' at '${toBreadcrumb(path)}' is missing.`);
-  }
-  if (schema.additionalProperties) {
-    throw new errors.SchemaInvalid(`Property 'additionalProperties' at '${toBreadcrumb(path)}' must not be true.`);
-  }
-
   const graphqlTypeName = toPascalCase(path);
   const graphqlTypeDefinitions: string[] = [];
 
@@ -32,7 +23,7 @@ const handleObjectType = function ({ path, schema, direction }: {
       typeDefinitions: propertyGraphqlTypeDefinitions
     } = parseSchema({
       path: [ ...path, propertyName ],
-      schema: propertySchema as JSONSchema7,
+      schema: propertySchema,
       direction
     });
 

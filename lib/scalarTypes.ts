@@ -1,4 +1,6 @@
-const scalarTypes: Record<string, string> = {
+import { ScalarType } from './Types/ScalarType';
+
+const scalarTypes: Record<ScalarType, string> = {
   boolean: 'Boolean',
   integer: 'Int',
   number: 'Float',

@@ -1,25 +1,16 @@
-import { Direction } from './Direction';
-import { JSONSchema7 } from 'json-schema';
+import { Direction } from './Types/Direction';
 import { parseSchema } from './parseSchema';
-import { toBreadcrumb } from './toBreadcrumb';
-import * as errors from './errors';
+import { TranslatableArrayTypeJsonSchema } from './Types/TranslatableArrayTypeJsonSchema';
 
 const handleArrayType = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema7;
+  schema: TranslatableArrayTypeJsonSchema;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  if (!schema.items) {
-    throw new errors.SchemaInvalid(`Property 'items' at '${toBreadcrumb(path)}' is missing.`);
-  }
-  if (Array.isArray(schema.items)) {
-    throw new errors.SchemaInvalid(`Property 'items' at '${toBreadcrumb(path)}' must not be an array.`);
-  }
-
   const {
     typeName: graphqlTypeName,
     typeDefinitions: graphqlTypeDefinitions
-  } = parseSchema({ path, schema: schema.items as JSONSchema7, direction });
+  } = parseSchema({ path, schema: schema.items, direction });
 
   return {
     typeName: `[${graphqlTypeName}]`,

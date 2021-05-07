@@ -1,10 +1,10 @@
-import { Direction } from './Direction';
-import { JSONSchema7 } from 'json-schema';
+import { Direction } from './Types/Direction';
 import { parseSchema } from './parseSchema';
+import { TranslatableJsonSchema } from './Types/TranslatableJsonSchema';
 
 const getGraphqlFromJsonSchema = function ({ rootName, schema, direction = 'output' }: {
   rootName: string;
-  schema: JSONSchema7;
+  schema: TranslatableJsonSchema;
   direction?: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
   return parseSchema({ path: [ rootName ], schema, direction });

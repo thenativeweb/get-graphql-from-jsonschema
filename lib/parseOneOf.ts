@@ -1,26 +1,26 @@
-import { Direction } from './Direction';
-import { JSONSchema7 } from 'json-schema';
+import { Direction } from './Types/Direction';
 import { parseSchema } from './parseSchema';
-import { toBreadcrumb } from './toBreadcrumb';
-import * as errors from './errors';
+import { TranslatableTypeJsonSchema } from './Types/TranslateableTypeJsonSchema';
+import { TranslatableUnionJsonSchema } from './Types/TranslatableUnionJsonSchema';
 
 const parseOneOf = function ({ path, schema, direction }: {
   path: string[];
-  schema: JSONSchema7;
+  schema: TranslatableUnionJsonSchema;
   direction: Direction;
 }): { typeName: string; typeDefinitions: string[] } {
-  if (!schema.oneOf) {
-    throw new errors.SchemaInvalid(`Property 'oneOf' at '${toBreadcrumb(path)}' is missing.`);
-  }
-  if (!Array.isArray(schema.oneOf)) {
-    throw new errors.SchemaInvalid(`Property 'oneOf' at '${toBreadcrumb(path)}' should be an array.`);
+  let subSchemas: TranslatableTypeJsonSchema[];
+
+  if ('oneOf' in schema) {
+    subSchemas = schema.oneOf;
+  } else {
+    subSchemas = schema.anyOf;
   }
 
   const graphqlTypeDefinitions: string[] = [],
         graphqlTypeNames: string[] = [];
 
-  schema.oneOf.forEach((subSchema, index): void => {
-    const result = parseSchema({ schema: subSchema as JSONSchema7, direction, path: [ ...path, `I${index}` ]});
+  subSchemas.forEach((subSchema, index): void => {
+    const result = parseSchema({ schema: subSchema, direction, path: [ ...path, `I${index}` ]});
 
     graphqlTypeNames.push(result.typeName);
     graphqlTypeDefinitions.push(...result.typeDefinitions);

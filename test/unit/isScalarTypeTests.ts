@@ -1,16 +1,23 @@
 import { assert } from 'assertthat';
-import { isScalarType } from '../../lib/isScalarType';
+import { hasScalarType } from '../../lib/hasScalarType';
+import { scalarTypeEnum } from '../../lib/Types/ScalarType';
 
 suite('isScalarType', (): void => {
-  [ 'boolean', 'integer', 'number', 'string' ].forEach((type): void => {
+  scalarTypeEnum.forEach((type): void => {
     test(`returns true if ${type} is given.`, async (): Promise<void> => {
-      assert.that(isScalarType({ type })).is.true();
+      assert.that(hasScalarType({ type })).is.true();
     });
   });
 
-  [ 'array', 'object' ].forEach((type): void => {
-    test(`returns false if ${type} is given.`, async (): Promise<void> => {
-      assert.that(isScalarType({ type })).is.false();
-    });
+  test(`returns true if multiple types are given.`, async (): Promise<void> => {
+    assert.that(hasScalarType({ type: [ 'number', 'string' ]})).is.true();
+  });
+
+  test(`returns false if object is given.`, async (): Promise<void> => {
+    assert.that(hasScalarType({ type: 'object', properties: {}, additionalProperties: false })).is.false();
+  });
+
+  test(`returns false if array is given.`, async (): Promise<void> => {
+    assert.that(hasScalarType({ type: 'array', items: { type: 'string' }})).is.false();
   });
 });
