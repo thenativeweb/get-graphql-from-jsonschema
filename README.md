@@ -110,7 +110,7 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 
 ### Using `oneOf` or `anyOf` to generate union types
 
-The `oneOf` and `anyOf` keywords are supported with a limitation on their usage: There must be no other properties on the same level as the either of them.
+The `oneOf` and `anyOf` keywords are supported with a limitation on their usage: There must be no other properties on the same level as either of them.
 
 ```typescript
 const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
