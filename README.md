@@ -33,7 +33,7 @@ To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` 
 It is discouraged to use this library without typescript. Not the entire json-schema specification can be
 translated to graphql and that is why we only support [a really specific subset of json-schema](#knowing-the-limitations).
 This subset is enforced at compile time using typescript types and not at run time using checks. This means using
-unsupported parts of json-schema can lead to silent misbehaviour ins javascript. 
+unsupported parts of json-schema can lead to silent misbehaviour in javascript. 
 
 ### Example
 
