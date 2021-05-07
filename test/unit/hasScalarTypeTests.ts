@@ -2,7 +2,7 @@ import { assert } from 'assertthat';
 import { hasScalarType } from '../../lib/hasScalarType';
 import { scalarTypeEnum } from '../../lib/Types/ScalarType';
 
-suite('isScalarType', (): void => {
+suite('hasScalarType', (): void => {
   scalarTypeEnum.forEach((type): void => {
     test(`returns true if ${type} is given.`, async (): Promise<void> => {
       assert.that(hasScalarType({ type })).is.true();

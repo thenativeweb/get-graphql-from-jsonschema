@@ -35,38 +35,38 @@ import { getGraphqlFromJsonSchema } from 'get-graphql-from-jsonschema';
 To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` function and hand over the root name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:
 
 ```javascript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-  rootName: 'person',
-  schema: {
-    type: 'object',
-    properties: {
-      firstName: { type: 'string' },
-      lastName: { type: 'string' },
-      coordinates: {
+const {typeName, typeDefinitions} = getGraphqlSchemaFromJsonSchema({
+    rootName: 'person',
+    schema: {
         type: 'object',
         properties: {
-          latitude: { type: 'number' },
-          longitude: { type: 'number' }
+            firstName: {type: 'string'},
+            lastName: {type: 'string'},
+            coordinates: {
+                type: 'object',
+                properties: {
+                    latitude: {type: 'number'},
+                    longitude: {type: 'number'}
+                },
+                required: ['latitude', 'longitude'],
+                additionalProperties: false
+            },
+            tags: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                        key: {type: 'string'},
+                        value: {type: 'string'}
+                    },
+                    required: ['key', 'value'],
+                    additionalProperties: false
+                }
+            }
         },
-        required: [ 'latitude', 'longitude' ],
+        required: ['firstName', 'tags'],
         additionalProperties: false
-      },
-      tags: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            key: { type: 'string' },
-            value: { type: 'string' }
-          },
-          required: [ 'key', 'value' ],
-          additionalProperties: false
-        }
-      }
-    },
-    required: [ 'firstName', 'tags' ],
-    additionalProperties: false
-  }
+    }
 });
 
 console.log(typeName);
@@ -96,12 +96,12 @@ The `T0` suffixes are due to enumerating the types in each schema. If a schema h
 If you want to use the generated types as input types for a mutation, additionally provide the `direction` option to the call to `getGraphqlFromJsonSchema` and set its value to `input`:
 
 ```javascript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-  rootName: 'person',
-  schema: {
-    // ...
-  },
-  direction: 'input'
+const {typeName, typeDefinitions} = getGraphqlSchemaFromJsonSchema({
+    rootName: 'person',
+    schema: {
+        // ...
+    },
+    direction: 'input'
 });
 ```
 
@@ -110,24 +110,24 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 The `oneOf` keyword is supported with a limitation on its use: There must be no other properties on the same level as the `oneOf`.
 
 ```javascript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
-  rootName: 'foobar',
-  schema: {
-    oneOf: [
-      {
-        type: 'number'
-      },
-      {
-        type: 'object',
-        properties: {
-          foo: { type: 'string' },
-          bar: { type: 'number' }
-        },
-        required: [ 'foo' ],
-        additionalProperties: false
-      }
-    ]
-  }
+const {typeName, typeDefinitions} = getGraphqlSchemaFromJsonSchema({
+    rootName: 'foobar',
+    schema: {
+        oneOf: [
+            {
+                type: 'number'
+            },
+            {
+                type: 'object',
+                properties: {
+                    foo: {type: 'string'},
+                    bar: {type: 'number'}
+                },
+                required: ['foo'],
+                additionalProperties: false
+            }
+        ]
+    }
 });
 
 console.log(typeName);

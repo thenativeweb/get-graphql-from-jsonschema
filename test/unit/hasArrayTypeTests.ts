@@ -2,7 +2,7 @@ import { assert } from 'assertthat';
 import { hasArrayType } from '../../lib/hasArrayType';
 import { scalarTypeEnum } from '../../lib/Types/ScalarType';
 
-suite('isArrayType', (): void => {
+suite('hasArrayType', (): void => {
   test(`returns true if array is given.`, async (): Promise<void> => {
     assert.that(hasArrayType({ type: 'array', items: { type: 'string' }})).is.true();
   });

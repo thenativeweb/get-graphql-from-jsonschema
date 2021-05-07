@@ -2,7 +2,7 @@ import { assert } from 'assertthat';
 import { hasObjectType } from '../../lib/hasObjectType';
 import { scalarTypeEnum } from '../../lib/Types/ScalarType';
 
-suite('isObjectType', (): void => {
+suite('hasObjectType', (): void => {
   test(`returns true if object is given.`, async (): Promise<void> => {
     assert.that(hasObjectType({ type: 'object', properties: {}, additionalProperties: false })).is.true();
   });
