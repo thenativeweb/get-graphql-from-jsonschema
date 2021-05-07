@@ -292,12 +292,47 @@ suite('getGraphqlSchemaFromJsonSchema', (): void => {
     });
   });
 
-  suite('schemas with oneOf', (): void => {
+  suite('schemas with oneOf or anyOf', (): void => {
     test('returns a union type for oneOf types.', async (): Promise<void> => {
       const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'foobar',
         schema: {
           oneOf: [
+            {
+              type: 'number'
+            },
+            {
+              type: 'object',
+              properties: {
+                foo: { type: 'string' },
+                bar: { type: 'number' }
+              },
+              required: [ 'foo' ],
+              additionalProperties: false
+            }
+          ]
+        }
+      });
+
+      assert.that(typeName).is.equalTo('Foobar');
+      assert.that(typeDefinitions).is.equalTo([
+        stripIndent`
+          type FoobarI1T0 {
+            foo: String!
+            bar: Float
+          }
+        `,
+        stripIndent`
+          union Foobar = Float | FoobarI1T0
+        `
+      ]);
+    });
+
+    test('returns a union type for anyOf types.', async (): Promise<void> => {
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
+        rootName: 'foobar',
+        schema: {
+          anyOf: [
             {
               type: 'number'
             },

@@ -3,7 +3,7 @@ import { parseSchema } from './parseSchema';
 import { TranslatableTypeJsonSchema } from './Types/TranslateableTypeJsonSchema';
 import { TranslatableUnionJsonSchema } from './Types/TranslatableUnionJsonSchema';
 
-const parseOneOf = function ({ path, schema, direction }: {
+const parseUnion = function ({ path, schema, direction }: {
   path: string[];
   schema: TranslatableUnionJsonSchema;
   direction: Direction;
@@ -36,4 +36,4 @@ const parseOneOf = function ({ path, schema, direction }: {
   };
 };
 
-export { parseOneOf };
+export { parseUnion };

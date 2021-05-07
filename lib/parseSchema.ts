@@ -1,6 +1,6 @@
 import { Direction } from './Types/Direction';
-import { parseOneOf } from './parseOneOf';
 import { parseType } from './parseType';
+import { parseUnion } from './parseUnion';
 import { stripIndent } from 'common-tags';
 import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
@@ -17,7 +17,7 @@ const parseSchema = function ({ path, schema, direction }: {
   if ('type' in schema) {
     result = parseType({ path, schema, direction });
   } else if ('oneOf' in schema || 'anyOf' in schema) {
-    result = parseOneOf({ path, schema, direction });
+    result = parseUnion({ path, schema, direction });
   } else {
     throw new errors.SchemaInvalid(`Structure at '${toBreadcrumb(path)}' not recognized.`);
   }
