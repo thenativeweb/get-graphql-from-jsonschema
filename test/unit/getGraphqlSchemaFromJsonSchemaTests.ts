@@ -1,11 +1,11 @@
 import { assert } from 'assertthat';
-import { getGraphqlFromJsonSchema } from '../../lib';
+import { getGraphqlSchemaFromJsonSchema } from '../../lib';
 import { stripIndent } from 'common-tags';
 
-suite('getGraphqlFromJsonSchema', (): void => {
+suite('getGraphqlSchemaFromJsonSchema', (): void => {
   suite('schemas for scalar types', (): void => {
     test('returns the GraphQL type name.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperature',
         schema: {
           type: 'number',
@@ -19,7 +19,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name for a union type.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperature',
         schema: {
           type: [ 'number', 'integer' ],
@@ -39,7 +39,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
 
   suite('schemas for array types', (): void => {
     test('returns the GraphQL type name.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperatures',
         schema: {
           type: 'array',
@@ -56,7 +56,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name for a union type.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperatures',
         schema: {
           type: 'array',
@@ -77,7 +77,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name for an outer union type.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperatures',
         schema: {
           type: [ 'number', 'integer' ],
@@ -95,7 +95,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name for an array containing objects.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'temperatures',
         schema: {
           type: 'array',
@@ -119,7 +119,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
 
   suite('schemas for object types', (): void => {
     test('returns the GraphQL type name and type definitions.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'person',
         schema: {
           type: 'object',
@@ -143,7 +143,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name and type definitions for complex types.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'person',
         schema: {
           type: 'object',
@@ -200,7 +200,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL input type name and input type definitions for input types.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'person',
         schema: {
           type: 'object',
@@ -258,7 +258,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name and type definitions for empty types.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'foo',
         schema: {
           type: 'object',
@@ -276,7 +276,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
     });
 
     test('returns the GraphQL type name and type definitions for multiple types.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'person',
         schema: {
           type: [ 'string', 'integer' ]
@@ -294,7 +294,7 @@ suite('getGraphqlFromJsonSchema', (): void => {
 
   suite('schemas with oneOf', (): void => {
     test('returns a union type for oneOf types.', async (): Promise<void> => {
-      const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+      const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
         rootName: 'foobar',
         schema: {
           oneOf: [
