@@ -1,7 +1,7 @@
-import { getGraphqlFromJsonSchema } from './getGraphqlFromJsonSchema';
+import { getGraphqlSchemaFromJsonSchema } from './getGraphqlSchemaFromJsonSchema';
 import * as errors from './errors';
 
 export {
   errors,
-  getGraphqlFromJsonSchema
+  getGraphqlSchemaFromJsonSchema
 };
