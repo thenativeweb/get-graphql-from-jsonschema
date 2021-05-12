@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/7.0.8...8.0.0) (2021-05-12)
+
+
+### Features
+
+* Restrict which schemas can be used with the typesystem. ([#293](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/293)) ([1cb8a2c](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/1cb8a2c6f0b137f975181bb00d8a5b4489317a12))
+
+
+### BREAKING CHANGES
+
+* Restrict which schemas can be used with the type system.
+
 ## [7.0.8](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/7.0.7...7.0.8) (2021-03-29)
 
 
