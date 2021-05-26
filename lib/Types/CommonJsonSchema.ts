@@ -20,6 +20,7 @@ interface CommonJsonSchema {
   maxLength?: number;
   minLength?: number;
   pattern?: string;
+  format?: string;
 
   additionalItems?: JSONSchema7Definition;
   maxItems?: number;
