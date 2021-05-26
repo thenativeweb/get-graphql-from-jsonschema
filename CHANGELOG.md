@@ -1,3 +1,10 @@
+## [8.0.3](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.2...8.0.3) (2021-05-26)
+
+
+### Bug Fixes
+
+* Add missing property 'format' to CommonSchema. ([#304](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/304)) ([bda810f](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/bda810f460a86512fe7e8edabbe077ffdc575276))
+
 ## [8.0.2](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.1...8.0.2) (2021-05-25)
 
 
