@@ -1,3 +1,10 @@
+## [8.0.6](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.5...8.0.6) (2021-06-10)
+
+
+### Bug Fixes
+
+* bump glob-parent from 5.1.1 to 5.1.2 ([#313](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/313)) ([15fbd22](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/15fbd226cb08ff1563ed8490095b9f103f3343b0))
+
 ## [8.0.5](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.4...8.0.5) (2021-06-10)
 
 
