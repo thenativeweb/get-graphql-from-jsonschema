@@ -1,3 +1,10 @@
+## [8.0.7](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.6...8.0.7) (2021-06-10)
+
+
+### Bug Fixes
+
+* bump normalize-url from 6.0.0 to 6.0.1 ([#311](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/311)) ([7fc6edb](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/7fc6edb7d9fd9cb50bdcbdf2926b09a85bab4b01))
+
 ## [8.0.6](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.5...8.0.6) (2021-06-10)
 
 
