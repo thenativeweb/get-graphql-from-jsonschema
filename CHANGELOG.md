@@ -1,3 +1,10 @@
+## [8.0.5](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.4...8.0.5) (2021-06-10)
+
+
+### Bug Fixes
+
+* bump trim-newlines from 3.0.0 to 3.0.1 ([#312](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/312)) ([0e55850](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/0e558500916e0d2f505a79a6ed16a1a04a2e5c61))
+
 ## [8.0.4](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.3...8.0.4) (2021-05-31)
 
 
