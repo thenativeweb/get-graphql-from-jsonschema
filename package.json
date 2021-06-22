@@ -1,6 +1,6 @@
 {
   "name": "get-graphql-from-jsonschema",
-  "version": "8.0.7",
+  "version": "8.0.8",
   "description": "get-graphql-from-jsonschema gets a GraphQL schema from a JSON schema.",
   "contributors": [
     {
