@@ -1,3 +1,10 @@
+## [8.0.11](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.10...8.0.11) (2021-07-13)
+
+
+### Bug Fixes
+
+* bump @types/common-tags from 1.8.0 to 1.8.1 ([#323](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/323)) ([9c1614d](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/9c1614d616d3e8821b33d0406ad986599db47352))
+
 ## [8.0.10](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.9...8.0.10) (2021-07-13)
 
 
