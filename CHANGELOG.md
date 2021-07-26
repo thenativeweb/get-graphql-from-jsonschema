@@ -1,3 +1,10 @@
+## [8.0.13](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.12...8.0.13) (2021-07-26)
+
+
+### Bug Fixes
+
+* bump defekt from 7.3.1 to 7.3.2 ([#328](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/328)) ([219f549](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/219f54992733b6197aefdf56c52f910e0ed43ba0))
+
 ## [8.0.12](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.11...8.0.12) (2021-07-13)
 
 
