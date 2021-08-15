@@ -1,3 +1,10 @@
+## [8.0.15](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.14...8.0.15) (2021-08-15)
+
+
+### Bug Fixes
+
+* bump path-parse from 1.0.6 to 1.0.7 ([#334](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/334)) ([24ca421](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/24ca4211ab3b73577f0f5d65e30df7e3dd1b7819))
+
 ## [8.0.14](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.13...8.0.14) (2021-08-09)
 
 
