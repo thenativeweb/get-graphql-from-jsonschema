@@ -16,8 +16,12 @@
       "email": "noah.hummel@thenativeweb.io"
     }
   ],
+  "private": false,
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
+  "engines": {
+    "node": ">= 16.7.0"
+  },
   "dependencies": {
     "@types/common-tags": "1.8.1",
     "@types/json-schema": "7.0.9",
@@ -29,6 +33,7 @@
     "roboter": "12.1.1",
     "semantic-release-configuration": "2.0.5"
   },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/thenativeweb/get-graphql-from-jsonschema.git"
