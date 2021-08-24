@@ -19,9 +19,6 @@
   "private": false,
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
-  "engines": {
-    "node": ">= 16.7.0"
-  },
   "dependencies": {
     "@types/common-tags": "1.8.1",
     "@types/json-schema": "7.0.9",
@@ -30,7 +27,7 @@
   },
   "devDependencies": {
     "assertthat": "6.3.13",
-    "roboter": "12.1.1",
+    "roboter": "12.1.2",
     "semantic-release-configuration": "2.0.5"
   },
   "scripts": {},
