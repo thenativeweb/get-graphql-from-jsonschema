@@ -1,3 +1,10 @@
+## [8.0.16](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.15...8.0.16) (2021-08-24)
+
+
+### Bug Fixes
+
+* add exclude to tsconfig.json, remove engine constraint ([#337](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/337)) ([8d5c42a](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/8d5c42a2778cbbe1eb0fcfc22425594e76206d4e))
+
 ## [8.0.15](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.14...8.0.15) (2021-08-15)
 
 
