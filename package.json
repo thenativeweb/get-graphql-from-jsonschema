@@ -26,7 +26,7 @@
     "defekt": "8.0.0"
   },
   "devDependencies": {
-    "assertthat": "6.3.13",
+    "assertthat": "6.3.14",
     "roboter": "12.5.0",
     "semantic-release-configuration": "2.0.5"
   },
