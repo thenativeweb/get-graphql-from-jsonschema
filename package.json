@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/common-tags": "1.8.1",
     "@types/json-schema": "7.0.9",
-    "common-tags": "1.8.0",
+    "common-tags": "1.8.1",
     "defekt": "8.0.0"
   },
   "devDependencies": {
