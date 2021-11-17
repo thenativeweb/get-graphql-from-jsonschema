@@ -19,6 +19,7 @@
   "private": false,
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
     "@types/common-tags": "1.8.1",
     "@types/json-schema": "7.0.9",
