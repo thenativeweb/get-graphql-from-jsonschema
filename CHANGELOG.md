@@ -1,3 +1,10 @@
+## [8.0.17](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.16...8.0.17) (2022-03-09)
+
+
+### Bug Fixes
+
+* Fix compatibility to latest TypeScript version. ([#362](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/362)) ([5671182](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/567118241bc0bc89e104b1c3dafbf2a01a9a72ce))
+
 ## [8.0.16](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.15...8.0.16) (2021-08-24)
 
 
