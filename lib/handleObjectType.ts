@@ -1,7 +1,9 @@
 import { Direction } from './Types/Direction';
 import { parseSchema } from './parseSchema';
+import { toBreadcrumb } from './toBreadcrumb';
 import { toPascalCase } from './toPascalCase';
 import { TranslatableObjectTypeJsonSchema } from './Types/TranslatableObjectTypeJsonSchema';
+import * as errors from './errors';
 
 const handleObjectType = function ({ path, schema, direction }: {
   path: string[];
@@ -12,6 +14,10 @@ const handleObjectType = function ({ path, schema, direction }: {
   const graphqlTypeDefinitions: string[] = [];
 
   const lines = [];
+
+  if (!('properties' in schema)) {
+    throw new errors.SchemaInvalid(`Expected schema of type 'object' at '${toBreadcrumb(path)}' to contain properties.`);
+  }
 
   for (const [ propertyName, propertySchema ] of Object.entries(schema.properties)) {
     const isRequired = (
