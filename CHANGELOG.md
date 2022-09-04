@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.18...8.1.0) (2022-09-04)
+
+
+### Features
+
+* Add meaningful error for object schemas without properties. ([#376](https://github.com/thenativeweb/get-graphql-from-jsonschema/issues/376)) ([f33f763](https://github.com/thenativeweb/get-graphql-from-jsonschema/commit/f33f763e96321a4550b66212ff36a5878af3356e))
+
 ## [8.0.18](https://github.com/thenativeweb/get-graphql-from-jsonschema/compare/8.0.17...8.0.18) (2022-08-11)
 
 
