@@ -363,4 +363,21 @@ suite('getGraphqlSchemaFromJsonSchema', (): void => {
       ]);
     });
   });
+
+  suite('regression tests', (): void => {
+    test('throws meaningful error for the schema from issue #355.', async (): Promise<void> => {
+      const schema = {
+        description: 'schema validating people and vehicles',
+        type: 'object',
+        oneOf: []
+      };
+
+      assert.that((): void => {
+        getGraphqlSchemaFromJsonSchema({
+          rootName: 'foobar',
+          schema: schema as any
+        });
+      }).is.throwing(`Expected schema of type 'object' at 'foobar.T0' to contain properties.`);
+    });
+  });
 });
