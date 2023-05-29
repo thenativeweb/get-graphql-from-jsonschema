@@ -21,7 +21,7 @@
   "types": "build/lib/index.d.ts",
   "dependencies": {
     "@types/common-tags": "1.8.1",
-    "@types/json-schema": "7.0.11",
+    "@types/json-schema": "7.0.12",
     "common-tags": "1.8.2",
     "defekt": "9.3.1"
   },
