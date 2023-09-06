@@ -23,10 +23,10 @@ $ npm install get-graphql-from-jsonschema
 First you need to add a reference to get-graphql-from-jsonschema to your application:
 
 ```typescript
-import { getGraphqlFromJsonSchema } from 'get-graphql-from-jsonschema';
+import { getGraphqlSchemaFromJsonSchema } from 'get-graphql-from-jsonschema';
 ```
 
-To get a GraphQL schema from a JSON schema, call the `getGraphqlFromJsonSchema` function and hand over the root name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:
+To get a GraphQL schema from a JSON schema, call the `getGraphqlSchemaFromJsonSchema` function and hand over the root name of the schema you want to convert as well as the schema itself. As a result, you get back the root GraphQL type name and, if needed, additional GraphQL type definitions:
 
 ### ⚠️ Disclaimer ⚠️
 
@@ -38,7 +38,7 @@ unsupported parts of json-schema can lead to silent misbehaviour in javascript.
 ### Example
 
 ```typescript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
   rootName: 'person',
   schema: {
     type: 'object',
@@ -99,7 +99,7 @@ The `T0` suffixes are due to enumerating the types in each schema. If a schema h
 If you want to use the generated types as input types for a mutation, additionally provide the `direction` option to the call to `getGraphqlFromJsonSchema` and set its value to `input`:
 
 ```typescript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
   rootName: 'person',
   schema: {
     // ...
@@ -113,7 +113,7 @@ const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
 The `oneOf` and `anyOf` keywords are supported with a limitation on their usage: There must be no other properties on the same level as either of them.
 
 ```typescript
-const { typeName, typeDefinitions } = getGraphqlFromJsonSchema({
+const { typeName, typeDefinitions } = getGraphqlSchemaFromJsonSchema({
   rootName: 'foobar',
   schema: {
     oneOf: [
